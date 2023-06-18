@@ -1,7 +1,7 @@
 const express = require("express");
 const secure = require("dotenv");
 const bodyParser = require("body-parser");
-secure.config({ path: "./config.env" });
+secure.config({ path: "./.env" });
 const app = express();
 const port = process.env.PORT || 4000;
 const cors = require("cors");
