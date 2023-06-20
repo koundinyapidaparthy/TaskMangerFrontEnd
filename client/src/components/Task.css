@@ -1,0 +1,111 @@
+.taskContainer {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.noTask {
+  margin-bottom: 10px;
+}
+
+.plus {
+  border-radius: 50%;
+  border: 2px solid black;
+  margin-right: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.addTask {
+  border-radius: 8px;
+  padding: 6px 10px;
+  border: 0px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.eachTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 10px 10px;
+  min-width: 300px;
+}
+
+.checkboxInput {
+  cursor: pointer;
+  border: 2px solid black !important;
+}
+
+.edit {
+  color: rgba(0, 89, 255, 0.828);
+  width: 20px !important;
+  height: 20px !important;
+  cursor: pointer;
+}
+
+.actionCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.save {
+  width: 20px !important;
+  height: 20px !important;
+  color: rgba(3, 89, 3, 0.836);
+  cursor: pointer;
+}
+
+.cancel {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.taskInput {
+  padding: 5px 10px 5px 5px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-size: 16px;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  color: black;
+}
+
+.LogoutWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.LogoutButton {
+  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.userDetails {
+  margin-top: 10px;
+  margin-left: 10px;
+}
