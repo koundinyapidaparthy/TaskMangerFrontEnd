@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../ContextProvider";
-import { Edit, Save, Cancel, Add, ExitToApp } from "@material-ui/icons";
+import { Edit, Save, Cancel, Add, ExitToApp, Delete } from "@material-ui/icons";
 import "./Task.css";
 function TaskManager() {
   const { userLoggedIn, setUserLoggedIn } = useContext(LoginContext);
@@ -9,13 +9,20 @@ function TaskManager() {
   const [userTasks, setUserTasks] = React.useState([]);
   const [editTasks, setEditTask] = React.useState({});
   const userName = (userLoggedIn.userEmail || "").split("@")[0];
-  function onSave(currentItemIndex) {
-    const updatedUserTasks = [...userTasks];
-    updatedUserTasks[currentItemIndex] = {
-      task: editTasks.newVal,
-      completed: editTasks.completed,
-    };
-    fetch("http://localhost:4000/storeData", {
+  function onSave(currentItemIndex, isDelete) {
+    let updatedUserTasks = [...userTasks];
+    if (!isDelete) {
+      updatedUserTasks[currentItemIndex] = {
+        task: editTasks.newVal,
+        completed: editTasks.completed,
+      };
+    } else if (isDelete) {
+      updatedUserTasks = updatedUserTasks.filter(
+        (_each, index) => index !== currentItemIndex
+      );
+    }
+
+    fetch("https://backendfortaskmanager.onrender.com/storeData", {
       method: "POST",
       body: JSON.stringify({
         email: userLoggedIn.userEmail,
@@ -41,7 +48,7 @@ function TaskManager() {
     if (!userLoggedIn.loggedIn) {
       navigate("/");
     } else {
-      fetch("http://localhost:4000/findUserTasks", {
+      fetch("https://backendfortaskmanager.onrender.com/findUserTasks", {
         method: "POST",
         body: JSON.stringify({
           email: userLoggedIn.userEmail,
@@ -117,17 +124,27 @@ function TaskManager() {
                 />
               )}
               {!isEditMode && (
-                <Edit
-                  onClick={() => {
-                    setEditTask({
-                      prev: task,
-                      newVal: task,
-                      index,
-                      completed,
-                    });
-                  }}
-                  className={classNameForDisabled ? "edit disabled" : "edit"}
-                />
+                <div className="actionCenter">
+                  <Edit
+                    onClick={() => {
+                      setEditTask({
+                        prev: task,
+                        newVal: task,
+                        index,
+                        completed,
+                      });
+                    }}
+                    className={classNameForDisabled ? "edit disabled" : "edit"}
+                  />
+                  <Delete
+                    onClick={() => {
+                      onSave(index, true);
+                    }}
+                    className={
+                      classNameForDisabled ? "delete disabled" : "delete"
+                    }
+                  />
+                </div>
               )}
               {isEditMode && (
                 <div className="actionCenter">

@@ -109,3 +109,11 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+
+.delete {
+  margin-left: 10px;
+  color: rgba(0, 89, 255, 0.828);
+  width: 20px !important;
+  height: 20px !important;
+  cursor: pointer;
+}
